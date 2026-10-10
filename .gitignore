@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# kuvat poistetaan versionhallinnasta, koska ne ovat suuria ja voivat sisältää arkaluontoista dataa.
+data_small/
