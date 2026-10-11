@@ -88,6 +88,42 @@ each member ran on top of the baseline.
   the duplicate photos of the dataset into both training and test sets, and the 721-image test set is different
   from the official one, so these scores are not directly comparable with the other notebooks.
 
+
+  #### Additional notes:
+  """
+ResNet50 v4 - Continue fine-tuning from v3
+
+model50_v4 = make_model("resnet50")
+
+model50_v4.load_state_dict(
+    torch.load(
+        os.path.join(SAVE_DIR, "resnet50_round3.pth"),
+        map_location=device,
+        weights_only=True
+    )
+)
+
+model50_v4, hist50_v4 = train_epochs(
+    model50_v4,
+    loaders["train"],
+    loaders["val"],
+    epochs=5,
+    lr=1e-5,
+    wd=1e-4,
+    step_size=7,
+    label_smoothing=0.0,
+    device=device
+)
+
+torch.save(
+    model50_v4.state_dict(),
+    os.path.join(SAVE_DIR, "resnet50_round4.pth")
+)
+
+plot_curves(hist50_v4, "ResNet50 v4")  tässä olisi vielä tämmöinen versio, jossa vain Epoch  5, kysy tekoälyltä miksi tämä on kiinnostava tapaus ja miski sen olisi  hyvä lisätä raportiin. mä lähden kohta saunaan, tässä on jäänyt vain raportti, virheiden selitys ja muut havainnot voidaan tuotaa esiim, pelkkä statistiikka ja numerot eivät sano itsestään mitään, jos tomi ei ilmestyy linjoille voisitko vähän hinostelemaan tätä, niin saadan tästäkiin helppo 5op hyvällä numerolla 🙂
+
+"""
+
 ---
 
 ## Tomi Kitola — `Tree project Tomi/tree_reco_tomi.ipynb`
