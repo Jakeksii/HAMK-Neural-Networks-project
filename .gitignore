@@ -219,3 +219,8 @@ __marimo__/
 
 # kuvat poistetaan versionhallinnasta, koska ne ovat suuria ja voivat sisältää arkaluontoista dataa.
 data_small/
+
+# Trained model weights (too large for git)
+*.pth
+*.pt
+models/
